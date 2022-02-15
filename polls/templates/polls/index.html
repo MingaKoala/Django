@@ -1,0 +1,19 @@
+       {% extends 'polls/base.html' %}
+       {% block content %}
+       <h1>{{ titel }}</h1>
+        <p class="lead">
+            Herzlich willkommen auf der Abstimmungsseite für meine Umfragen!
+            Hier könnt Ihr einfach abstimmen! <!-- Hier dann auf englisch um schreiben -->
+        </p>
+        <hr /> <!-- ist der "---------------" Strich unter dem text-->
+        <h2>Aktuell laufende Umfragen</h2> <!-- Hier dann auf englisch um schreiben -->
+        {% if umfragen %}
+        <ul>
+            {% for umfrage in umfragen %}
+            <li><a href="{% url 'umfrage-detail' umfrage.slug %}"> Umfrage {{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
+            
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endblock %}
+  
