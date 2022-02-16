@@ -3,6 +3,8 @@
 {% if object %}
 <h1>{{ object.name }}</h1>
 <h2>Antwortmöglichkeiten</h2> <!--Hier ins englische übersetzen-->
+
+{%if not voted %}
 {% if object.choice_set.all %}
 <form action="{% url 'polls:vote' object.slug %}" method="post">
     {% csrf_token %}
@@ -16,6 +18,16 @@
 {% else %}
 <p>Leider wurde noch keine Anwortmöglichkeit hinterlegt.</p> <!--Hier ins englische übersetzen-->
 {% endif %}
+
+{% else %}
+<p>
+    Die Umfrage ist abgelaufen oder du hast bereits abgestimmt und kannst dir
+    <a href="{% url 'polls:results' object.slug %}">hier</a>
+    die Ergebnisse ansehen.
+  </p>
+{% endif %}
+
+
 {% else %}
 <h1>Es konnte keine Umfrage gefunden werden</h1> <!--Hier ins englische übersetzen-->
 {% endif %}
