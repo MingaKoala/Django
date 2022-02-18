@@ -5,6 +5,9 @@ class Poll(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(unique=True)
 
+    publish_time =models.DateTimeField()
+    days_running = models.IntegerField(default=7)
+
     def __str__(self):
         return "{0} (Slug: {1})".format(self.name, self.slug)
 
