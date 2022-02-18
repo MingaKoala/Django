@@ -10,7 +10,7 @@ from django.contrib import messages
 from .models import Poll, Choice
 
 def index(request):
-    context = {'umfragen': Poll.objects.all(), 'titel': "Umfragenseite"}
+    context = {'umfragen': Poll.objects.all(), 'titel': "Survey Page"}
     return render(request=request, template_name='polls/index.html',
                   context=context)
 
@@ -51,7 +51,7 @@ def vote(request, slug):
     try:
         ausgewahlte_antwort = umfrage.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
-        messages.error(request, "Fehler: keine bzw. eine ungueltige Antwort ausgewaehlt!")
+        messages.error(request, "Error: no or an invalid answer selected!")
         return HttpResponseRedirect(reverse('polls:umfrage-detail', args=(umfrage.slug,)))
     else:
         ausgewahlte_antwort.votes += 1
