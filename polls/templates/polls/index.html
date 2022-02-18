@@ -2,21 +2,22 @@
        {% block content %}
        <h1>{{ titel }}</h1>
         <p class="lead">
-            Herzlich willkommen auf der Abstimmungsseite für meine Umfragen!
-            Hier könnt Ihr einfach abstimmen! <!-- Hier dann auf englisch um schreiben -->
+        Welcome to the voting page for my polls!
+        You can simply vote here.
+        
         </p>
-        <hr /> <!-- ist der "---------------" Strich unter dem text-->
-        <h2>Aktuell laufende Umfragen</h2> <!-- Hier dann auf englisch um schreiben -->
+        <hr /> 
+        <h2>Current polls</h2> 
         {% if umfragen %}
         <ul>
             {% for umfrage in umfragen %}
             {% if umfrage.is_active %}
-            <li><a href="{% url 'polls:umfrage-detail' umfrage.slug %}">{{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
+            <li><a href="{% url 'polls:umfrage-detail' umfrage.slug %}">{{ umfrage.name }}</a></li> 
             {% endif %}
             {% endfor %}
         </ul>
         {% endif %}
-        <h2>Abgeschlossene Umfragen</h2>
+        <h2>Completed Polls</h2>
         {% if umfragen %}
         <ul>
             {% for umfrage in umfragen %}

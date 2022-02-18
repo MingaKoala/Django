@@ -2,8 +2,8 @@
 {% block content %}
 {% if object %}
 <h1>{{ object.name }}</h1>
-<a href="{% url 'polls:index' %}">zur&uuml;ck zur Startseite</a>
-<h2>Antwortm&ouml;glichkeiten</h2>
+<a href="{% url 'polls:index' %}">back to Homepepage</a>
+<h2>Answer Choices</h2>
 
 {% for message in messages %}
 <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -23,21 +23,21 @@
   id="choice{{ forloop.counter }}"/>
   <label for="choice{{ forloop.counter }}">{{ choice.name }}</label>
   {% endfor %}
-  <input type="submit" value="Antwort absenden" />
+  <input type="submit" value="Submit answer" />
 </form>
 {% else %}
-<p>Leider wurde noch keine Antwortm&ouml;glichkeit hinterlegt.</p>
+<p>Unfotunately no answer option has been deposited yet.</p>
 {% endif %}
 
 {% else %}
 <p>
-  Die Umfrage ist abgelaufen oder du hast bereits abgestimmt und kannst dir
-  <a href="{% url 'polls:results' object.slug %}">hier</a>
-  die Ergebnisse ansehen.
+  The poll has expired or you have already voted and can
+  <a href="{% url 'polls:results' object.slug %}">here</a>
+  view the results.
 </p>
 {% endif %}
 
 {% else %}
-<h1>Es kann keine Umfrage ausgegeben werden</h1>
+<h1>No poll can be issued</h1>
 {% endif %}
 {% endblock %}
