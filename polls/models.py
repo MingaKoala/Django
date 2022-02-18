@@ -1,6 +1,9 @@
 from unicodedata import name
 from django.db import models
 
+from datetime import timedelta
+from django.utils import timezone
+
 class Poll(models.Model):
     name = models.CharField(max_length=256)
     slug = models.SlugField(unique=True)
@@ -10,6 +13,14 @@ class Poll(models.Model):
 
     def __str__(self):
         return "{0} (Slug: {1})".format(self.name, self.slug)
+
+    def is_active(self):
+        end_time = self.publish_time + timedelta(days=self.days_running)
+        if timezone.now() >= self.publish_time and timezone.now() <= end_time:
+            return True
+        else:
+            return False
+        
 
 class Choice(models.Model):
     poll = models.ForeignKey(to='Poll', on_delete=models.CASCADE)

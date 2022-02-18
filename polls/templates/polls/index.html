@@ -10,9 +10,20 @@
         {% if umfragen %}
         <ul>
             {% for umfrage in umfragen %}
-            <li><a href="{% url 'polls:umfrage-detail' umfrage.slug %}"> Umfrage {{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
-            
-        {% endfor %}
+            {% if umfrage.is_active %}
+            <li><a href="{% url 'polls:umfrage-detail' umfrage.slug %}">{{ umfrage.name }}</a></li> <!-- Hier dann auf englisch um schreiben -->
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h2>Abgeschlossene Umfragen</h2>
+        {% if umfragen %}
+        <ul>
+            {% for umfrage in umfragen %}
+            {% if not umfrage.is_active %}
+            <li><a href="{% url 'polls:results' umfrage.slug %}">{{ umfrage.name }}</a></li>
+            {% endif %}
+            {% endfor %}
         </ul>
         {% endif %}
         {% endblock %}

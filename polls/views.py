@@ -1,12 +1,11 @@
-from multiprocessing import context
-from pyexpat.errors import messages
-from random import choice
-from urllib import request
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+
+from django.http import HttpResponse, HttpResponseRedirect
+
 from django.urls import reverse
 from django.views import generic
 
+from django.contrib import messages
 
 from .models import Poll, Choice
 
@@ -67,4 +66,3 @@ def vote(request, slug):
             request.session['voted_polls'] = [umfrage.id]
 
         return HttpResponseRedirect(reverse('polls:results', args=(umfrage.slug,)))
-
