@@ -2,7 +2,7 @@
 {% block content %}
 {% if object %}
 <h1>{{ object.name }}</h1>
-<h2>Ergebnis</h2>
+<h2>Results</h2>
 <a href="{% url 'polls:index' %}">back to Hompepage</a>
 {% if access or not umfrage.is_active %}
 <p class="lead">
@@ -10,7 +10,7 @@
 </p>
 
 {% if object.choice_set.all %}
-<ul>
+<ul class="vote">
   {% for choice in object.choice_set.all %}
   <li>{{choice.name}}: {{ choice.votes }} voted for it!</li>
   {% endfor %}
